@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 import Table from "./Table";
+import './data.css'
 
 export const DataToRender = () => {
   const [data, setData] = useState<any[]>([]);
@@ -41,9 +42,11 @@ export const DataToRender = () => {
 
   return (
     <>
-      <Button variant="contained" color="primary" onClick={handleClick}>
-        Toggle
-      </Button>
+      <div className="btn-padding">
+        <Button variant="contained" color="primary" onClick={handleClick}>
+          Toggle
+        </Button>
+      </div>
 
       <Table data={data} max={max} />
     </>

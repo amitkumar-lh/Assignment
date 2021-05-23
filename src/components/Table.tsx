@@ -5,28 +5,36 @@ import {
   GridSortDirection,
 } from "@material-ui/data-grid";
 import { useHistory } from "react-router-dom";
+import { Avatar } from '@material-ui/core';
+import './data.css'
 
 export default function Table({ data, max }: any) {
   const history = useHistory();
 
-  const getFullName = (params: GridValueGetterParams) => {
-    return `${params.row.firstname || ""} ${params.row.lastname || ""}`;
+  const getFullName = (params: any) => {
+    return(
+      <>
+      <span className="padding-right">{params.row.firstname || ""} {params.row.lastname || ""}</span>
+      <span ><Avatar alt="Remy Sharp" src={params?.row?.avatarUrl} /></span>
+      </>
+    )
+    
   };
 
   const columns: GridColDef[] = [
     {
       field: "firstname",
       headerName: "Name",
-      width: 130,
-      valueGetter: getFullName,
+      width: 350,
+      renderCell: getFullName,
     },
-    { field: "email", headerName: "Email", width: 130 },
-    { field: "phone", headerName: "Phone", width: 130 },
-    { field: "hasPremium", headerName: "Premium", width: 130 },
+    { field: "email", headerName: "Email", width: 300 },
+    { field: "phone", headerName: "Phone", width: 200 },
+    { field: "hasPremium", headerName: "Premium", width: 180 },
     {
       field: max ? "maxAmount" : "minAmount",
       headerName: "Max/Min Bid",
-      width: 160,
+      width: 300,
     },
   ];
 
